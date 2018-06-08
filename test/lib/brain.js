@@ -8,8 +8,9 @@ try {
 } catch (e) {}
 
 const learningRate = 0.5
-const layersNodes = [2, 2, 3, 1]
-const babyBrain = savedBrain ? B.fromJSON(savedBrain) : B.initBrain(layersNodes)
+const activation = 'sigmoid'
+const layersNodes = [2, 2, 1]
+const babyBrain = savedBrain ? B.fromJSON(savedBrain) : B.initBrain(activation, layersNodes)
 
 const correctData = [
   {
