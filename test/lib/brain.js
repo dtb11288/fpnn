@@ -1,4 +1,4 @@
-const B = require('../../lib/brain')({ learning_rate: 0.5 })
+const B = require('../../lib/brain')
 const path = require('path')
 const fs = require('fs')
 const saveFile = path.resolve('test/tmp/saved.json')
@@ -7,7 +7,9 @@ try {
   savedBrain = require(saveFile)
 } catch (e) {}
 
-const babyBrain = savedBrain ? B.fromJSON(savedBrain) : B.initBrain([2, 2, 1])
+const learningRate = 0.5
+const layersNodes = [2, 2, 3, 1]
+const babyBrain = savedBrain ? B.fromJSON(savedBrain) : B.initBrain(layersNodes)
 
 const correctData = [
   {
@@ -44,7 +46,7 @@ const data = (() => {
   return result
 })()
 
-const adultBrain = B.train(data, babyBrain)
+const adultBrain = B.train(babyBrain, learningRate, data)
 fs.writeFileSync(saveFile, JSON.stringify(B.toJSON(adultBrain)))
 
 console.log(count)
