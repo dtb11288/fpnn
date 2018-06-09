@@ -7,9 +7,9 @@ try {
   savedBrain = require(saveFile)
 } catch (e) {}
 
-const learningRate = 0.5
-const activation = 'sigmoid'
-const layersNodes = [2, 2, 1]
+const learningRate = 0.01
+const activation = 'leaky_relu'
+const layersNodes = [2, 4, 1]
 const babyBrain = savedBrain ? B.fromJSON(savedBrain) : B.initBrain(activation, layersNodes)
 
 const correctData = [
