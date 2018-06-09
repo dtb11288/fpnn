@@ -40,7 +40,7 @@ const takeOne = data => {
 
 const data = (() => {
   let result = []
-  for (let i = 0; i <= 30000; i++) {
+  for (let i = 0; i < 30000; i++) {
     let e = takeOne(correctData)
     result.push(e)
   }
