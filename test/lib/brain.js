@@ -7,7 +7,10 @@ try {
   savedBrain = require(saveFile)
 } catch (e) {}
 
-const learningRate = 0.01
+const trainingConfig = {
+  cost: 'squared',
+  rate: 0.01
+}
 const activation = 'leaky_relu'
 const layersNodes = [2, 4, 1]
 const babyBrain = savedBrain ? B.fromJSON(savedBrain) : B.initBrain(activation, layersNodes)
@@ -47,7 +50,7 @@ const data = (() => {
   return result
 })()
 
-const adultBrain = B.train(babyBrain, learningRate, data)
+const adultBrain = B.train(babyBrain, trainingConfig, data)
 fs.writeFileSync(saveFile, JSON.stringify(B.toJSON(adultBrain)))
 
 console.log(count)
